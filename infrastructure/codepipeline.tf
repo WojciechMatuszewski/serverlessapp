@@ -1,10 +1,3 @@
-module "website_bucket" {
-  source   = "git::https://github.com/cloudposse/terraform-aws-s3-website.git?ref=master"
-  stage    = var.stage
-  name     = var.application_name
-  hostname = var.bucket_name
-}
-
 data "aws_iam_policy_document" "codepipeline_assume_document" {
   statement {
     effect = "Allow"
