@@ -5,6 +5,7 @@ install-backend:
 
 install-frontend:
 	cd frontend && npm install
+
 build-frontend:
 	cd frontend && npm run build
 
