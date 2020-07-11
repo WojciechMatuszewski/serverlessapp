@@ -12,4 +12,4 @@ phases:
       - echo build phase..
   post_build:
     commands:
-      - aws s3 sync ../frontend/build s3://$BUCKET_NAME
+      - aws s3 sync frontend/build s3://$BUCKET_NAME

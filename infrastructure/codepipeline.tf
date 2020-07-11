@@ -94,7 +94,7 @@ resource "aws_codepipeline" "pipeline" {
       input_artifacts = [var.application_name]
 
       configuration = {
-        ProjectName = "testing"
+        ProjectName = module.codebuild.project_name
       }
     }
   }
