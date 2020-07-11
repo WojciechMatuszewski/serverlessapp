@@ -11,11 +11,6 @@ module "codebuild" {
 
   aws_region = var.region
 
-  extra_permissions = [
-    "s3:*",
-    "logs:*"
-  ]
-
   environment_variables = [
     {
       name  = "ENVIRONMENT"
@@ -27,3 +22,9 @@ module "codebuild" {
     }
   ]
 }
+
+resource "aws_iam_role_policy_attachment" "something" {
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+  role       = module.codebuild.role_id
+}
+
