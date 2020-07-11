@@ -1,7 +1,7 @@
 module "codebuild" {
   source = "git::https://github.com/cloudposse/terraform-aws-codebuild.git?ref=master"
   stage  = var.stage
-  name   = var.application_name
+  name   = "${var.application_name}-codebuild"
 
   buildspec = file("../buildspec.yml")
 
@@ -10,6 +10,8 @@ module "codebuild" {
   build_timeout      = 60
 
   aws_region = var.region
+
+  extra_permissions = ["s3:PutObject"]
 
   environment_variables = [
     {
