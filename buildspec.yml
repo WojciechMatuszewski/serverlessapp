@@ -19,7 +19,7 @@ phases:
     commands:
       - cd backend && npm run deploy
       - aws s3 sync frontend/build s3://$BUCKET_NAME
-  cache:
-    paths:
-      - frontend/node_modules/**
-      - backend/node_modules/**
+cache:
+  paths:
+    - frontend/node_modules/**
+    - backend/node_modules/**
