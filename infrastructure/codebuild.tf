@@ -11,7 +11,10 @@ module "codebuild" {
 
   aws_region = var.region
 
-  extra_permissions = ["s3:PutObject"]
+  extra_permissions = [
+    "s3:*",
+    "logs:*"
+  ]
 
   environment_variables = [
     {
@@ -20,7 +23,7 @@ module "codebuild" {
     },
     {
       name  = "BUCKET_NAME"
-      value = module.website_bucket.s3_bucket_name
+      value = aws_s3_bucket.website_bucket.bucket
     }
   ]
 }

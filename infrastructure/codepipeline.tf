@@ -21,8 +21,8 @@ data "aws_iam_policy_document" "codepipeline_policy_document" {
       "s3:PutObject"
     ]
     resources = [
-      module.website_bucket.s3_bucket_arn,
-      "${module.website_bucket.s3_bucket_arn}/*"
+      aws_s3_bucket.website_bucket.arn,
+      "${aws_s3_bucket.website_bucket.arn}/*"
     ]
   }
 
@@ -50,7 +50,7 @@ resource "aws_codepipeline" "pipeline" {
   role_arn = aws_iam_role.code_pipeline_role.arn
 
   artifact_store {
-    location = module.website_bucket.s3_bucket_name
+    location = aws_s3_bucket.website_bucket.bucket
     type     = "S3"
   }
 
