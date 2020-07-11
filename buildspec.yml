@@ -8,7 +8,7 @@ phases:
   pre_build:
     commands:
       - cd frontend && npm install
-      - echo $PWD
+      - cd ..
       - cd backend && npm install
   build:
     commands:
