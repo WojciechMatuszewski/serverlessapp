@@ -6,7 +6,7 @@ module "codebuild" {
   buildspec = file("../buildspec.yml")
 
   build_image        = "aws/codebuild/standard:3.0"
-  build_compute_type = "BUILD_GENERAL1_SMALL"
+  build_compute_type = "BUILD_GENERAL1_MEDIUM"
   build_timeout      = 60
 
   aws_region = var.region
