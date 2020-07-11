@@ -9,7 +9,7 @@ import (
 
 func handler(ctx context.Context, request events.APIGatewayV2HTTPRequest) (events.APIGatewayV2HTTPResponse,error) {
 	return events.APIGatewayV2HTTPResponse{
-		Body: "it work :)",
+		Body: "hey, it actually works?",
 		StatusCode: http.StatusOK,
 	}, nil
 }

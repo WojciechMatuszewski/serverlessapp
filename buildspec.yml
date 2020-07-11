@@ -6,8 +6,8 @@ phases:
       golang: 1.13
       nodejs: 10
     commands:
-      - cd frontend && npm run install
-      - cd backend && npm run install
+      - cd frontend && npm install
+      - cd backend && npm install
   pre_build:
     commands:
       - echo pre build phase..
