@@ -2,14 +2,19 @@ version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      golang: 1.14
+      nodejs: 10
     commands:
-      - echo starting...
+      - cd frontend && npm run install
+      - cd backend && npm run install
   pre_build:
     commands:
       - echo pre build phase..
   build:
     commands:
-      - echo build phase..
+      - cd frontend && npm run build
   post_build:
     commands:
+      - cd backend && npm run deploy
       - aws s3 sync frontend/build s3://$BUCKET_NAME

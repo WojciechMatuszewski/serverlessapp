@@ -1,0 +1,19 @@
+service: serverlessapp
+
+provider:
+  name: aws
+  region: eu-central-1
+  runtime: go1.x
+
+plugins:
+  - serverless-go-plugin
+
+custom:
+  go:
+    baseDir: src
+
+
+functions:
+  hello:
+    handler: ./functions/hello
+

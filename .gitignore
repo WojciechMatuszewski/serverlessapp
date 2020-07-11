@@ -5,3 +5,8 @@
 # .tfstate files
 *.tfstate
 *.tfstate.*
+
+*node_modules*
+./frontend/build
+
+.serverless

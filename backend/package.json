@@ -1,0 +1,11 @@
+{
+  "name": "backend",
+  "scripts": {
+    "deploy": "sls deploy",
+    "package": "sls package"
+  },
+  "devDependencies": {
+    "serverless": "^1.74.1",
+    "serverless-go-plugin": "^2.0.1"
+  }
+}
