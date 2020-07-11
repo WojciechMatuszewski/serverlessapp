@@ -1,0 +1,7 @@
+.idea
+
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
