@@ -1,0 +1,46 @@
+Resources:
+
+  UserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: ${self:service}-user-pool
+      AutoVerifiedAttributes:
+        - email
+      UsernameAttributes:
+        - email
+      Schema:
+        - AttributeDataType: String
+          Name: email
+          Required: true
+
+  UserPoolClient:
+    Type: AWS::Cognito::UserPoolClient
+    DependsOn:
+      - UserPool
+    Properties:
+      UserPoolId: !Ref UserPool
+      ClientName: ${self:service}-user-pool-client
+      # frontend library does not have support for secrets
+      GenerateSecret: false
+      SupportedIdentityProviders:
+        - COGNITO
+      CallbackURLs: ${self:custom.COGNITO_CALLBACKS}
+      LogoutURLs: ${self:custom.COGNITO_CALLBACKS}
+      AllowedOAuthFlows:
+        - code
+        - implicit
+      AllowedOAuthScopes:
+        - email
+        - openid
+        - profile
+
+  UserPoolDomain:
+    Type: AWS::Cognito::UserPoolDomain
+    DependsOn:
+      - UserPool
+    Properties:
+      UserPoolId: !Ref UserPool
+      CustomDomainConfig:
+        CertificateArn: ${self:custom.COGNITO_CERT_ARN}
+      Domain: "auth.serverlessapp.tk"
+

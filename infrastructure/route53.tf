@@ -20,7 +20,7 @@ resource "aws_route53_record" "cert_validation" {
 }
 
 resource "aws_route53_record" "website_record" {
-  depends_on = [aws_s3_bucket.website_bucket, aws_s3_bucket.website_redirect_bucket, aws_route53_zone.zone]
+  depends_on = [aws_s3_bucket.website_bucket, aws_cloudfront_distribution.website_distribution, aws_route53_zone.zone]
 
   name    = ""
   type    = "A"
@@ -28,10 +28,11 @@ resource "aws_route53_record" "website_record" {
 
   alias {
     evaluate_target_health = false
-    name                   = aws_s3_bucket.website_bucket.website_domain
-    zone_id                = aws_s3_bucket.website_bucket.hosted_zone_id
+    name                   = aws_cloudfront_distribution.website_distribution.domain_name
+    zone_id                = aws_cloudfront_distribution.website_distribution.hosted_zone_id
   }
 }
+
 
 resource "aws_route53_record" "website_c_record" {
   depends_on = [aws_s3_bucket.website_bucket, aws_s3_bucket.website_redirect_bucket, aws_route53_zone.zone]
